@@ -10,8 +10,13 @@ RUN useradd --create-home --home-dir $HOME ghgvcr \
 # install distro libraries for R dependencies
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \
-		libnetcdf-dev \
+		libnetcdf-dev libxml2 libxml2-dev libcurl4-openssl-dev wget unzip \
 	&& rm -rf /var/lib/apt/lists/*
+
+RUN touch $HOME/data/test.txt
+# Download the netcdef files & unzip into data directory
+RUN wget --quiet --output-document=$HOME/data/netcdf.zip https://www.dropbox.com/s/ybtgguz0g3a8a2d/netcdf.zip?dl=1
+# RUN unzip $HOME/data/netcdf.zip
 
 # install R dependency packages
 RUN Rscript -e "install.packages(c('ggplot2', 'gridExtra', 'Hmisc', 'jsonlite', 'scales', 'tidyr', 'ncdf4', 'Rserve', 'XML'), repos = 'http://cran.us.r-project.org')"
