@@ -29,11 +29,6 @@ COPY . $HOME
 # install our project packages
 RUN Rscript -e "install.packages('$HOME', repos=NULL, type='source')"
 
-# Download the netcdef files & unzip into data directory
-RUN curl -L -o $HOME/data/app_data.zip https://www.dropbox.com/s/2g2x58fkolgnn76/app_data.zip?dl=1 \
-  && unzip $HOME/data/app_data.zip \
-  && rm -rf $HOME/data/app_data.zip
-
 EXPOSE 6311
 
 # set the command
