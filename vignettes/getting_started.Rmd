@@ -17,7 +17,7 @@ Citation: Kristina J. Teixeira and Evan H. Delucia 2011. The greenhouse gas valu
 `ghgvcR` has two principal functions:
 
 1. `get_ncdf()` reads in netcdf biome data.
-2. `ghgvcr()` calculates the greenhouse gas emissions of a specific ecosystem. 
+2. `ghgvcr()` calculates the greenhouse gas emissions of a specific ecosystem.
 
 These functions are implemented in two scripts in the `inst/scripts` directory of the `ghgvcR` package: `get_biome.R` and `calc_ghgv.R`. `get_biome.R` is used by GHGVC to load biome data from netcdf4 files. `calc_ghgv.R` is used by GHGVC to calculate greenhouse gas emissions and write the results to a json file.
 
@@ -28,10 +28,10 @@ Several example ecosystem data files are kept in `inst/config_examples/`. These 
 library(ghgvcr)
 
 #load example config data
-config_file <- system.file("config/multisite_config.xml", package = "ghgvcr")
-config <- XML::xmlToList(XML::xmlParse(config_file))  
+config_file <- system.file("config/multi_site.xml", package = "ghgvcr")
+config <- XML::xmlToList(XML::xmlParse(config_file))
 
-#Calculate 
+#Calculate
 res <- ghgvc(config, write_data=FALSE, make_plots=FALSE)
 
 #Write the data to a file:
@@ -48,11 +48,11 @@ df <- as.data.frame(res$site_1_data)
 
 ```
 
-####Biome Example 
+####Biome Example
 The same calculation can be done for a specific location if biome data is available.
 
 ```{r eval=FALSE}
-#NOT RUN 
+#NOT RUN
 library(ghgvcr)
 data(biome_defaults)
 
